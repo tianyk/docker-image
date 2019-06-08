@@ -1,4 +1,4 @@
-FROM python:2.7-alpine
+FROM python:2.7.5-alpine
 
 RUN pip install shadowsocks
 
