@@ -6,7 +6,6 @@ COPY www www
 
 RUN apk add --no-cache git \
     && git clone https://github.com/tianyk/note.git \
-    && apk del git \
     && chmod +x www 
 
 EXPOSE 8080
