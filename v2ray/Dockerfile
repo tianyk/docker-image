@@ -1,7 +1,6 @@
 FROM alpine:latest
 
-RUN apt-get update
-RUN apt-get install curl -y
+RUN apk add --no-cache curl 
 RUN bash <(curl -L -s https://install.direct/go.sh)
 
 COPY config.json /etc/v2ray.json 
