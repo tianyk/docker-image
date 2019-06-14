@@ -1,7 +1,7 @@
 FROM alpine:latest
 
 RUN apk add --no-cache curl 
-RUN bash <(curl -L -s https://install.direct/go.sh)
+RUN curl -L -s https://install.direct/go.sh | bash 
 
 COPY config.json /etc/v2ray.json 
 
