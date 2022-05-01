@@ -41,6 +41,10 @@ set_config_option() {
 }
 
 prepare_configuration() {
+    # host 
+    set_config_option jobmanager.rpc.address ${JOB_MANAGER_RPC_ADDRESS}
+
+    # zookeeper
     if [ -n "${HIGH_AVAILABILITY_ZOOKEEPER_QUORUM}" ]; then
         set_config_option high-availability.zookeeper.quorum ${HIGH_AVAILABILITY_ZOOKEEPER_QUORUM}
     fi
@@ -57,11 +61,11 @@ prepare_configuration() {
         set_config_option taskmanager.numberOfTaskSlots ${TASK_MANAGER_NUMBER_OF_TASK_SLOTS}
     fi
 
-    if [ -n "${FLINK_PROPERTIES}" ]; then
-        echo "${FLINK_PROPERTIES}" >> "${CONF_FILE}"
+    if [ -n "${TASK_MANAGER_NUMBER_OF_TASK_SLOTS}" ]; then
+        set_config_option taskmanager.numberOfTaskSlots ${TASK_MANAGER_NUMBER_OF_TASK_SLOTS}
     fi
-    
-    envsubst < "${CONF_FILE}" > "${CONF_FILE}.tmp" && mv "${CONF_FILE}.tmp" "${CONF_FILE}"
+
+    # envsubst < "${CONF_FILE}" > "${CONF_FILE}.tmp" && mv "${CONF_FILE}.tmp" "${CONF_FILE}"
 }
 
 
