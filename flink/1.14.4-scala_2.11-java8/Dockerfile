@@ -5,7 +5,12 @@ ENV FLINK_HOME=/opt/flink-$FLINK_VERSION
 ENV PATH=$FLINK_HOME/bin:$PATH
 
 # 安装 flink
-ADD flink-1.14.4-bin-scala_2.11.tgz /opt/
+# ADD flink-1.14.4-bin-scala_2.11.tgz /opt/
+RUN curl -s https://docker-1252933230.cos.ap-shanghai.myqcloud.com/soft/flink/flink-1.14.4-bin-scala_2.11.tgz \
+    --output flink-1.14.4-bin-scala_2.11.tgz \
+    && tar -xf flink-1.14.4-bin-scala_2.11.tgz -C /opt/ \
+    && rm -rf flink-1.14.4-bin-scala_2.11.tgz
+
 COPY flink-conf.yaml $FLINK_HOME/conf/
 
 WORKDIR $FLINK_HOME
